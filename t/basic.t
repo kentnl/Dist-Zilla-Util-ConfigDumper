@@ -17,8 +17,7 @@ my $t   = dztest();
 my $pn  = 'TestPlugin';
 my $fpn = 'Dist::Zilla::Plugin::' . $pn;
 
-$t->add_file( 'dist.ini',
-    simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [$pn], ) );
+$t->add_file( 'dist.ini', simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [$pn], ) );
 $t->add_file( 'lib/Dist/Zilla/Plugin/' . $pn . '.pm', <<"EOF");
 package $fpn;
 
@@ -38,16 +37,16 @@ EOF
 
 $t->build_ok;
 $t->meta_path_deeply(
-'/x_Dist_Zilla/plugins/*/*[ key eq \'class\' and value eq \'Dist::Zilla::Plugin::TestPlugin\' ]/../*[ key eq \'config\']',
-    [
-        {
-            'Dist::Zilla::Plugin::TestPlugin' => {
-                'attr' => 'I have value, my life has meaning'
-              }
-
+  '/x_Dist_Zilla/plugins/*/*[ key eq \'class\' and value eq \'Dist::Zilla::Plugin::TestPlugin\' ]/../*[ key eq \'config\']',
+  [
+    {
+      'Dist::Zilla::Plugin::TestPlugin' => {
+        'attr' => 'I have value, my life has meaning'
         }
-    ],
-    "Plugin list expected"
+
+    }
+  ],
+  "Plugin list expected"
 );
 done_testing;
 

@@ -12,9 +12,7 @@ our $VERSION = '0.001000';
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Try::Tiny qw( try catch );
-use Sub::Exporter::Progressive -setup => {
-  exports => [qw( config_dumper )],
-};
+use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper )], };
 
 
 
@@ -60,25 +58,26 @@ sub config_dumper {
   my ( $package, @methodnames ) = @_;
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
-      my ( $orig, $self, @rest ) = @_;
-      my $cnf = $self->$orig(@rest);
-      my $payload = {};
-      my @fails;
-      for my $method ( @methodnames ) {
-        try {
-          my $value = $self->$method();
-          $payload->{ $method } = $value;
-        } catch {
-          push @fails, $method;
-        };
+    my ( $orig, $self, @rest ) = @_;
+    my $cnf     = $self->$orig(@rest);
+    my $payload = {};
+    my @fails;
+    for my $method (@methodnames) {
+      try {
+        my $value = $self->$method();
+        $payload->{$method} = $value;
       }
-      $cnf->{$package} = $payload;
-      if ( @fails ) {
-        $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
-        $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
-        $cnf->{$CFG_PACKAGE}->{$package}->{failed} = \@fails;
-      }
-      return $cnf;
+      catch {
+        push @fails, $method;
+      };
+    }
+    $cnf->{$package} = $payload;
+    if (@fails) {
+      $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
+      $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
+      $cnf->{$CFG_PACKAGE}->{$package}->{failed} = \@fails;
+    }
+    return $cnf;
   };
 }
 
