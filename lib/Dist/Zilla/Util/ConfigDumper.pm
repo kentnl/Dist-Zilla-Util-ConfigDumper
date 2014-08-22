@@ -116,7 +116,7 @@ version 0.001000
 Returns a function suitable for use with C<around dump_config>.
 
   my $sub = config_dumper( __PACKAGE__, qw( method list ) );
-  around dump_config => $sub; 
+  around dump_config => $sub;
 
 Or
 
@@ -139,7 +139,7 @@ Either way:
 
     for my $method ( @methods ) {
       try {
-        $payload->{ $method } = $self->$method(); 
+        $payload->{ $method } = $self->$method();
       };
     }
     $config->{+__PACKAGE__} = $payload;

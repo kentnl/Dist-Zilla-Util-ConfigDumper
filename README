@@ -42,7 +42,7 @@ FUNCTIONS
 
         for my $method ( @methods ) {
           try {
-            $payload->{ $method } = $self->$method(); 
+            $payload->{ $method } = $self->$method();
           };
         }
         $config->{+__PACKAGE__} = $payload;
