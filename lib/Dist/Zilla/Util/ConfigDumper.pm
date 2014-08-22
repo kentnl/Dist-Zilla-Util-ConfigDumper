@@ -186,7 +186,7 @@ is much less ugly than
 
 =head2 DETAILED CONFIGURATION
 
-There's an additonal feature for advanced people:
+There's an additional feature for advanced people:
 
   config_dumper( $pkg, \%config );
 
