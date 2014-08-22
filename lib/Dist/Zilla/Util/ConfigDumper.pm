@@ -38,7 +38,7 @@ sub config_dumper {
 }
 
 sub _mk_method_test {
-  my ( $package, $methodname ) = @_;
+  my ( undef, $methodname ) = @_;
   return sub {
     my ( $instance, $payload, $fails ) = @_;
     try {
