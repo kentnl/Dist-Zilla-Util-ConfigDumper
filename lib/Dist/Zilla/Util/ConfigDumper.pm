@@ -107,7 +107,9 @@ version 0.001000
 
   around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
 
-=functon C<config_dumper>
+=head1 FUNCTIONS
+
+=head2 C<config_dumper>
 
   config_dumper( __PACKAGE__, qw( method list ) );
 
