@@ -52,7 +52,7 @@ sub _mk_method_test {
 }
 
 sub _mk_attribute_test {
-  my ( $package, $attrname ) = @_;
+  my ( undef, $attrname ) = @_;
   return sub {
     my ( $instance, $payload, $fails ) = @_;
     try {
