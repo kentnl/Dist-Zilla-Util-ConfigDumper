@@ -1,5 +1,15 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.002000 2014-08-22T17:52:30Z
+ [00 Major]
+ - now supports coderefs
+ - now supports hashrefs depicting true attributes
+ - Moose plumbing internals for attributes.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001000, see misc/*.deps* for details
+ - runtime: +1
+
 0.001000 2014-08-22T14:16:22Z
  - First version.
 

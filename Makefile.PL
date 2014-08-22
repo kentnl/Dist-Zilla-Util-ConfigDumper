@@ -20,6 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Util::ConfigDumper",
   "PREREQ_PM" => {
+    "Carp" => 0,
     "Sub::Exporter::Progressive" => 0,
     "Try::Tiny" => 0,
     "strict" => 0,
@@ -38,7 +39,7 @@ my %WriteMakefileArgs = (
     "Test::DZil" => 0,
     "Test::More" => "0.89"
   },
-  "VERSION" => "0.001000",
+  "VERSION" => "0.002000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -46,6 +47,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Carp" => 0,
   "Dist::Zilla::Plugin::Bootstrap::lib" => 0,
   "Dist::Zilla::Plugin::GatherDir" => 0,
   "Dist::Zilla::Plugin::MetaConfig" => 0,

@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 VERSION
-    version 0.001000
+    version 0.002000
 
 SYNOPSIS
       ...
@@ -49,6 +49,54 @@ FUNCTIONS
       }
 
     Except with some extra "things dun goofed" handling.
+
+ADVANCED USE
+  CALLBACKS
+    Internally
+
+      config_dumper( $pkg, qw( method list ) );
+
+    Maps to a bunch of subs, so its more like:
+
+      config_dumper( $pkg, sub {
+        my ( $instance, $payload ) = @_;
+        $payload->{'method'} = $instance->method;
+      }, sub {
+        $_[1]->{'list'} = $_[0]->list;
+      });
+
+    So if you want to use that because its more convenient for some problem,
+    be my guest.
+
+      around dump_config => config_dumper( __PACKAGE__, sub {
+        $_[1]->{'x'} = 'y'
+      });
+
+    is much less ugly than
+
+      around dump_config => sub {
+        my ( $orig, $self, @args ) = @_;
+        my $conf = $self->$orig(@args);
+        $config->{+__PACKAGE__} = { # if you forget the +, things break
+           'x' => 'y'
+        };
+        return $config;
+      };
+
+  DETAILED CONFIGURATION
+    There's an additional feature for advanced people:
+
+      config_dumper( $pkg, \%config );
+
+   "attrs"
+      config_dumper( $pkg, { attrs => [qw( foo bar baz )] });
+
+    This is for cases where you want to deal with "Moose" attributes, but
+    want added safety of NOT loading attributes that have no value yet.
+
+    For each item in "attrs", we'll call "Moose" attribute internals to
+    determine if the attribute named has a value, and only then will we
+    fetch it.
 
 AUTHOR
     Kent Fredric <kentfredric@gmail.com>

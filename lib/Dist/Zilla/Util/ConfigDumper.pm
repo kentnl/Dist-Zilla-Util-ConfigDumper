@@ -5,71 +5,27 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.001000';
+our $VERSION = '0.002000';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Carp qw( croak );
 use Try::Tiny qw( try catch );
 use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper )], };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
+  my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
     my ( $orig, $self, @rest ) = @_;
     my $cnf     = $self->$orig(@rest);
     my $payload = {};
     my @fails;
-    for my $method (@methodnames) {
-      try {
-        my $value = $self->$method();
-        $payload->{$method} = $value;
-      }
-      catch {
-        push @fails, $method;
-      };
+    for my $test (@tests) {
+      $test->( $self, $payload, \@fails );
     }
     $cnf->{$package} = $payload;
     if (@fails) {
@@ -79,6 +35,54 @@ sub config_dumper {
     }
     return $cnf;
   };
+}
+
+sub _mk_method_test {
+  my ( undef, $methodname ) = @_;
+  return sub {
+    my ( $instance, $payload, $fails ) = @_;
+    try {
+      my $value = $instance->$methodname();
+      $payload->{$methodname} = $value;
+    }
+    catch {
+      push @{$fails}, $methodname;
+    };
+  };
+}
+
+sub _mk_attribute_test {
+  my ( $package, $attrname ) = @_;
+  my $metaclass           = $package->meta;
+  my $attribute_metaclass = $metaclass->get_attribute($attrname);
+  return sub {
+    my ( $instance, $payload, $fails ) = @_;
+    try {
+      if ( $attribute_metaclass->has_value($instance) ) {
+        $payload->{$attrname} = $attribute_metaclass->get_value($instance);
+      }
+    }
+    catch {
+      push @{$fails}, $attrname;
+    };
+  };
+}
+
+sub _mk_hash_test {
+  my ( $package, $hash ) = @_;
+  my @out;
+  if ( exists $hash->{attrs} and 'ARRAY' eq ref $hash->{attrs} ) {
+    push @out, map { _mk_attribute_test( $package, $_ ) } @{ $hash->{attrs} };
+  }
+  return @out;
+}
+
+sub _mk_test {
+  my ( $package, $methodname ) = @_;
+  return _mk_method_test( $package, $methodname ) if not ref $methodname;
+  return $methodname if 'CODE' eq ref $methodname;
+  return _mk_hash_test( $package, $methodname ) if 'HASH' eq ref $methodname;
+  croak "Don't know what to do with $methodname";
 }
 
 1;
@@ -95,7 +99,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.001000
+version 0.002000
 
 =head1 SYNOPSIS
 
@@ -145,6 +149,56 @@ Either way:
   }
 
 Except with some extra "things dun goofed" handling.
+
+=head1 ADVANCED USE
+
+=head2 CALLBACKS
+
+Internally
+
+  config_dumper( $pkg, qw( method list ) );
+
+Maps to a bunch of subs, so its more like:
+
+  config_dumper( $pkg, sub {
+    my ( $instance, $payload ) = @_;
+    $payload->{'method'} = $instance->method;
+  }, sub {
+    $_[1]->{'list'} = $_[0]->list;
+  });
+
+So if you want to use that because its more convenient for some problem, be my guest.
+
+  around dump_config => config_dumper( __PACKAGE__, sub {
+    $_[1]->{'x'} = 'y'
+  });
+
+is much less ugly than
+
+  around dump_config => sub {
+    my ( $orig, $self, @args ) = @_;
+    my $conf = $self->$orig(@args);
+    $config->{+__PACKAGE__} = { # if you forget the +, things break
+       'x' => 'y'
+    };
+    return $config;
+  };
+
+=head2 DETAILED CONFIGURATION
+
+There's an additional feature for advanced people:
+
+  config_dumper( $pkg, \%config );
+
+=head3 C<attrs>
+
+  config_dumper( $pkg, { attrs => [qw( foo bar baz )] });
+
+This is for cases where you want to deal with C<Moose> attributes,
+but want added safety of B<NOT> loading attributes that have no value yet.
+
+For each item in C<attrs>, we'll call C<Moose> attribute internals to determine
+if the attribute named has a value, and only then will we fetch it.
 
 =head1 AUTHOR
 
