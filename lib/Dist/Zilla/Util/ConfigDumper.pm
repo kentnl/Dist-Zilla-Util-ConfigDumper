@@ -169,7 +169,7 @@ Maps to a bunch of subs, so its more like:
 
 So if you want to use that because its more convenient for some problem, be my guest.
 
-  around dump_config => config_dumper( __PACKAGE__, sub { 
+  around dump_config => config_dumper( __PACKAGE__, sub {
     $_[1]->{'x'} = 'y'
   });
 
