@@ -27,6 +27,7 @@ provides:
     file: lib/Dist/Zilla/Util/ConfigDumper.pm
     version: '0.001001'
 requires:
+  Carp: '0'
   Sub::Exporter::Progressive: '0'
   Try::Tiny: '0'
   perl: '5.008'
@@ -41,6 +42,7 @@ version: '0.001001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
+    Carp: '1.34'
     Dist::Zilla::App::Command::bakeini: '0.001002'
     Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.002003'
     Dist::Zilla::Plugin::Authority: '1.006'
