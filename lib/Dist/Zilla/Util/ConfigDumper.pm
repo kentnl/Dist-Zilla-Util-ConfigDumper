@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.002000';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
@@ -38,7 +38,7 @@ sub config_dumper {
 }
 
 sub _mk_method_test {
-  my ($methodname) = @_;
+  my ( $package, $methodname ) = @_;
   return sub {
     my ( $instance, $payload, $fails ) = @_;
     try {
@@ -99,7 +99,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.001001
+version 0.002000
 
 =head1 SYNOPSIS
 
