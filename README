@@ -1,0 +1,24 @@
+NAME
+    Dist::Zilla::Util::ConfigDumper - Easy implemention of 'dumpconfig'
+
+VERSION
+    version 0.001000
+
+SYNOPSIS
+      ...
+
+      with 'Dist::Zilla::Role::Plugin';
+      use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
+
+      around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
+
+AUTHOR
+    Kent Fredric <kentfredric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Kent Fredric
+    <kentfredric@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
