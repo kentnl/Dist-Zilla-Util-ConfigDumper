@@ -18,6 +18,7 @@ use Sub::Exporter::Progressive -setup => {
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
+  my $CFG_PACKAGE = __PACKAGE__;
   return sub {
       my ( $orig, $self, @rest ) = @_;
       my $cnf = $self->$orig(@rest);
@@ -33,10 +34,10 @@ sub config_dumper {
       }
       $cnf->{$package} = $payload;
       if ( @fails ) {
-        $cnf->{+__PACKAGE__} = {} unless exists $cnf->{__PACKAGE__};
-        $cnf->{+__PACKAGE__}->{$package} = {} unless exists $cnf->{__PACKAGE__};
-        $cnf->{+__PACKAGE__}->{$package}->{failed} = \@fails;
-      };
+        $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
+        $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
+        $cnf->{$CFG_PACKAGE}->{$package}->{failed} = \@fails;
+      }
       return $cnf;
   };
 }
