@@ -33,6 +33,10 @@ requires:
   strict: '0'
   utf8: '0'
   warnings: '0'
+resources:
+  bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues
+  homepage: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper
+  repository: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper.git
 version: '0.001000'
 x_BuiltWith:
   modules:
