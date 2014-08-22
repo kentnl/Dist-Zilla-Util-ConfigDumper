@@ -11,7 +11,7 @@ our $VERSION = '0.001000';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Try::Tiny qw( try );
+use Try::Tiny qw( try catch );
 use Sub::Exporter::Progressive -setup => {
   exports => [qw( config_dumper )],
 };
@@ -33,17 +33,13 @@ sub config_dumper {
       }
       $cnf->{$package} = $payload;
       if ( @fails ) {
-        $cnf->{__PACKAGE__} = {} unless exists $cnf->{__PACKAGE__};
-        $cnf->{__PACKAGE__}->{$package} = {} unless exists $cnf->{__PACKAGE__};
-        $cnf->{__PACKAGE__}->{$package}->{failed} = \@fails;
+        $cnf->{+__PACKAGE__} = {} unless exists $cnf->{__PACKAGE__};
+        $cnf->{+__PACKAGE__}->{$package} = {} unless exists $cnf->{__PACKAGE__};
+        $cnf->{+__PACKAGE__}->{$package}->{failed} = \@fails;
       };
       return $cnf;
   };
 }
-
-
-__PACKAGE__->meta->make_immutable;
-no Moose;
 
 1;
 

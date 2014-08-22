@@ -20,7 +20,6 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Util::ConfigDumper",
   "PREREQ_PM" => {
-    "Moose" => 0,
     "Sub::Exporter::Progressive" => 0,
     "Try::Tiny" => 0,
     "strict" => 0,
@@ -28,8 +27,15 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::Plugin::Bootstrap::lib" => 0,
+    "Dist::Zilla::Plugin::GatherDir" => 0,
+    "Dist::Zilla::Plugin::MetaConfig" => 0,
+    "Dist::Zilla::Role::Plugin" => 0,
+    "Dist::Zilla::Util::Test::KENTNL" => "1.001",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
+    "Moose" => 0,
+    "Test::DZil" => 0,
     "Test::More" => "0.89"
   },
   "VERSION" => "0.001000",
@@ -40,10 +46,16 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Dist::Zilla::Plugin::Bootstrap::lib" => 0,
+  "Dist::Zilla::Plugin::GatherDir" => 0,
+  "Dist::Zilla::Plugin::MetaConfig" => 0,
+  "Dist::Zilla::Role::Plugin" => 0,
+  "Dist::Zilla::Util::Test::KENTNL" => "1.001",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Moose" => 0,
   "Sub::Exporter::Progressive" => 0,
+  "Test::DZil" => 0,
   "Test::More" => "0.89",
   "Try::Tiny" => 0,
   "strict" => 0,
