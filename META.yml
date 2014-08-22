@@ -1,5 +1,5 @@
 ---
-abstract: "Easy implemention of 'dumpconfig'"
+abstract: "Easy implementation of 'dumpconfig'"
 author:
   - 'Kent Fredric <kentfredric@gmail.com>'
 build_requires:

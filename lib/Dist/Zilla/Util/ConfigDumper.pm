@@ -7,7 +7,7 @@ package Dist::Zilla::Util::ConfigDumper;
 
 our $VERSION = '0.001000';
 
-# ABSTRACT: Easy implemention of 'dumpconfig'
+# ABSTRACT: Easy implementation of 'dumpconfig'
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -15,6 +15,46 @@ use Try::Tiny qw( try catch );
 use Sub::Exporter::Progressive -setup => {
   exports => [qw( config_dumper )],
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
@@ -52,7 +92,7 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Util::ConfigDumper - Easy implemention of 'dumpconfig'
+Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
@@ -66,6 +106,44 @@ version 0.001000
   use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
 
   around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
+
+=functon C<config_dumper>
+
+  config_dumper( __PACKAGE__, qw( method list ) );
+
+Returns a function suitable for use with C<around dump_config>.
+
+  my $sub = config_dumper( __PACKAGE__, qw( method list ) );
+  around dump_config => $sub; 
+
+Or
+
+  around dump_config => sub {
+    my ( $orig, $self, @args ) = @_;
+    return config_dumper(__PACKAGE__, qw( method list ))->( $orig, $self, @args );
+  };
+
+Either way:
+
+  my $function = config_dumper( $package_name_for_config, qw( methods to call on $self ));
+  my $hash = $function->( $function_that_returns_a_hash, $instance_to_call_methods_on, @somethinggoeshere );
+
+=~ All of this approximates:
+
+  around dump_config => sub {
+    my ( $orig , $self , @args ) = @_;
+    my $conf = $self->$orig( @args );
+    my $payload = {};
+
+    for my $method ( @methods ) {
+      try {
+        $payload->{ $method } = $self->$method(); 
+      };
+    }
+    $config->{+__PACKAGE__} = $payload;
+  }
+
+Except with some extra "things dun goofed" handling.
 
 =head1 AUTHOR
 
