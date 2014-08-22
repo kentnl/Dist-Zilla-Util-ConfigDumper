@@ -25,7 +25,7 @@ name: Dist-Zilla-Util-ConfigDumper
 provides:
   Dist::Zilla::Util::ConfigDumper:
     file: lib/Dist/Zilla/Util/ConfigDumper.pm
-    version: '0.002000'
+    version: '0.002001'
 requires:
   Carp: '0'
   Sub::Exporter::Progressive: '0'
@@ -38,7 +38,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper
   repository: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper.git
-version: '0.002000'
+version: '0.002001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -449,7 +449,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 0.002000-source
+          tag: 0.002001-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -503,7 +503,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '0.002000'
+          tag: '0.002001'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
