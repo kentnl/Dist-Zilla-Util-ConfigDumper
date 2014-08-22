@@ -1,5 +1,10 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.002001 2014-08-22T18:38:02Z
+ [Bugfix]
+ - Seems Roles don't like ->meta->get_attribute being used for anything, so early attribute sanity checking options
+   were misguided.
+
 0.002000 2014-08-22T17:52:30Z
  [00 Major]
  - now supports coderefs
