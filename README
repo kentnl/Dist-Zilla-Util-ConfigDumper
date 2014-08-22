@@ -1,0 +1,62 @@
+NAME
+    Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
+
+VERSION
+    version 0.001000
+
+SYNOPSIS
+      ...
+
+      with 'Dist::Zilla::Role::Plugin';
+      use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
+
+      around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
+
+FUNCTIONS
+  "config_dumper"
+      config_dumper( __PACKAGE__, qw( method list ) );
+
+    Returns a function suitable for use with "around dump_config".
+
+      my $sub = config_dumper( __PACKAGE__, qw( method list ) );
+      around dump_config => $sub;
+
+    Or
+
+      around dump_config => sub {
+        my ( $orig, $self, @args ) = @_;
+        return config_dumper(__PACKAGE__, qw( method list ))->( $orig, $self, @args );
+      };
+
+    Either way:
+
+      my $function = config_dumper( $package_name_for_config, qw( methods to call on $self ));
+      my $hash = $function->( $function_that_returns_a_hash, $instance_to_call_methods_on, @somethinggoeshere );
+
+    =~ All of this approximates:
+
+      around dump_config => sub {
+        my ( $orig , $self , @args ) = @_;
+        my $conf = $self->$orig( @args );
+        my $payload = {};
+
+        for my $method ( @methods ) {
+          try {
+            $payload->{ $method } = $self->$method();
+          };
+        }
+        $config->{+__PACKAGE__} = $payload;
+      }
+
+    Except with some extra "things dun goofed" handling.
+
+AUTHOR
+    Kent Fredric <kentfredric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Kent Fredric
+    <kentfredric@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
