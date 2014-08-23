@@ -249,7 +249,7 @@ sub config_dumper {
 =head2 C<dump_plugin>
 
 This function serves the other half of the equation, emulating C<dzil>'s own
-internal behaviour for extracting the C<plugin> configuration data.
+internal behavior for extracting the C<plugin> configuration data.
 
   for my $plugin ( @{ $zilla->plugins } ) {
     pp( dump_plugin( $plugin )); # could prove useful somewhere.
@@ -263,7 +263,7 @@ Its not usually something you need, but its useful in:
 
 =item * Crazy Stuff like injecting plugins
 
-=item * Crazy Suff like having "Child" plugins
+=item * Crazy Stuff like having "Child" plugins
 
 =back
 

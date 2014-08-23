@@ -62,7 +62,7 @@ FUNCTIONS
 
   "dump_plugin"
     This function serves the other half of the equation, emulating "dzil"'s
-    own internal behaviour for extracting the "plugin" configuration data.
+    own internal behavior for extracting the "plugin" configuration data.
 
       for my $plugin ( @{ $zilla->plugins } ) {
         pp( dump_plugin( $plugin )); # could prove useful somewhere.
@@ -74,7 +74,7 @@ FUNCTIONS
 
     *   Crazy Stuff like injecting plugins
 
-    *   Crazy Suff like having "Child" plugins
+    *   Crazy Stuff like having "Child" plugins
 
 ADVANCED USE
   CALLBACKS
