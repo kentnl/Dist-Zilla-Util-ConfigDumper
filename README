@@ -13,22 +13,6 @@ SYNOPSIS
       around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
 
 FUNCTIONS
-  "dump_plugin"
-    This function serves the other half of the equation, emulating "dzil"'s
-    own internal behaviour for extracting the "plugin" configuration data.
-
-      for my $plugin ( @{ $zilla->plugins } ) {
-        pp( dump_plugin( $plugin )); # could prove useful somewhere.
-      }
-
-    Its not usually something you need, but its useful in:
-
-    *   Tests
-
-    *   Crazy Stuff like injecting plugins
-
-    *   Crazy Suff like having "Child" plugins
-
   "config_dumper"
       config_dumper( __PACKAGE__, qw( method list ) );
 
@@ -65,6 +49,32 @@ FUNCTIONS
       }
 
     Except with some extra "things dun goofed" handling.
+
+    sub config_dumper { my ( $package, @methodnames ) = @_; my (@tests) =
+    map { _mk_test( $package, $_ ) } @methodnames; my $CFG_PACKAGE =
+    __PACKAGE__; return sub { my ( $orig, $self, @rest ) = @_; my $cnf =
+    $self->$orig(@rest); my $payload = {}; my @fails; for my $test (@tests)
+    { $test->( $self, $payload, \@fails ); } $cnf->{$package} = $payload; if
+    (@fails) { $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
+    $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists
+    $cnf->{$CFG_PACKAGE}; $cnf->{$CFG_PACKAGE}->{$package}->{failed} =
+    \@fails; } return $cnf; }; }
+
+  "dump_plugin"
+    This function serves the other half of the equation, emulating "dzil"'s
+    own internal behaviour for extracting the "plugin" configuration data.
+
+      for my $plugin ( @{ $zilla->plugins } ) {
+        pp( dump_plugin( $plugin )); # could prove useful somewhere.
+      }
+
+    Its not usually something you need, but its useful in:
+
+    *   Tests
+
+    *   Crazy Stuff like injecting plugins
+
+    *   Crazy Suff like having "Child" plugins
 
 ADVANCED USE
   CALLBACKS
