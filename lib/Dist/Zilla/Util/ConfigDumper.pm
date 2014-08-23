@@ -105,7 +105,7 @@ sub dump_plugin {
   $object_config->{name}    = $plugin->plugin_name if $plugin->can('plugin_name');
   $object_config->{version} = $plugin->VERSION     if $plugin->can('VERSION');
   if ( $plugin->can('dump_config') ) {
-    my $finder_config = $finder_object->dump_config;
+    my $finder_config = $plugin->dump_config;
     $object_config->{config} = $finder_config if keys %{$finder_config};
   }
   return $object_config;
