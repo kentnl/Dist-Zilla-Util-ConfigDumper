@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+ [00 Major]
+ - Add dump_plugin utility for deep nested "I want to pretend I'm dzil" stuff.
 
 0.002001 2014-08-22T18:38:02Z
  [Bugfix]
