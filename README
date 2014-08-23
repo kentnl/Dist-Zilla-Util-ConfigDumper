@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 VERSION
-    version 0.002001
+    version 0.003000
 
 SYNOPSIS
       ...
@@ -49,6 +49,37 @@ FUNCTIONS
       }
 
     Except with some extra "things dun goofed" handling.
+
+  "dump_plugin"
+    This function serves the other half of the equation, emulating "dzil"'s
+    own internal behavior for extracting the "plugin" configuration data.
+
+      for my $plugin ( @{ $zilla->plugins } ) {
+        pp( dump_plugin( $plugin )); # could prove useful somewhere.
+      }
+
+    Its not usually something you need, but its useful in:
+
+    *   Tests
+
+    *   Crazy Stuff like injecting plugins
+
+    *   Crazy Stuff like having "Child" plugins
+
+    This serves to be a little more complicated than merely calling
+    "->dump_config", as the structure "dzil" uses is:
+
+      {
+        class   => ...
+        name    => ...
+        version => ...
+        config  => $dump_config_results_here
+      }
+
+    And of course, there's a bunch of magic stuff with "meta", "can" and "if
+    keys %$configresults"
+
+    All that insanity is wrapped in this simple interface.
 
 ADVANCED USE
   CALLBACKS

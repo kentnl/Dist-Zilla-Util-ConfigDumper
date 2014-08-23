@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.002001';
+our $VERSION = '0.003000';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
@@ -13,7 +13,47 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Carp qw( croak );
 use Try::Tiny qw( try catch );
-use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper )], };
+use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_plugin )], };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
@@ -35,6 +75,56 @@ sub config_dumper {
     }
     return $cnf;
   };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub dump_plugin {
+  my ($plugin) = @_;
+  my $object_config = {};
+  $object_config->{class}   = $plugin->meta->name  if $plugin->can('meta') and $plugin->meta->can('name');
+  $object_config->{name}    = $plugin->plugin_name if $plugin->can('plugin_name');
+  $object_config->{version} = $plugin->VERSION     if $plugin->can('VERSION');
+  if ( $plugin->can('dump_config') ) {
+    my $finder_config = $plugin->dump_config;
+    $object_config->{config} = $finder_config if keys %{$finder_config};
+  }
+  return $object_config;
 }
 
 sub _mk_method_test {
@@ -99,7 +189,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.002001
+version 0.003000
 
 =head1 SYNOPSIS
 
@@ -149,6 +239,41 @@ Either way:
   }
 
 Except with some extra "things dun goofed" handling.
+
+=head2 C<dump_plugin>
+
+This function serves the other half of the equation, emulating C<dzil>'s own
+internal behavior for extracting the C<plugin> configuration data.
+
+  for my $plugin ( @{ $zilla->plugins } ) {
+    pp( dump_plugin( $plugin )); # could prove useful somewhere.
+  }
+
+Its not usually something you need, but its useful in:
+
+=over 4
+
+=item * Tests
+
+=item * Crazy Stuff like injecting plugins
+
+=item * Crazy Stuff like having "Child" plugins
+
+=back
+
+This serves to be a little more complicated than merely calling C<< ->dump_config >>,
+as the structure C<dzil> uses is:
+
+  {
+    class   => ...
+    name    => ...
+    version => ...
+    config  => $dump_config_results_here
+  }
+
+And of course, there's a bunch of magic stuff with C<meta>, C<can> and C<if keys %$configresults>
+
+All that insanity is wrapped in this simple interface.
 
 =head1 ADVANCED USE
 
