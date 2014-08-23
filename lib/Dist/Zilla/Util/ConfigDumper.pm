@@ -100,6 +100,20 @@ sub config_dumper {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sub dump_plugin {
   my ($plugin) = @_;
   my $object_config = {};
@@ -246,6 +260,20 @@ Its not usually something you need, but its useful in:
 =item * Crazy Stuff like having "Child" plugins
 
 =back
+
+This serves to be a little more complicated than merely calling C<< ->dump_config >>,
+as the structure C<dzil> uses is:
+
+  {
+    class   => ...
+    name    => ...
+    version => ...
+    config  => $dump_config_results_here
+  }
+
+And of course, there's a bunch of magic stuff with C<meta>, C<can> and C<if keys %$configresults>
+
+All that insanity is wrapped in this simple interface.
 
 =head1 ADVANCED USE
 
