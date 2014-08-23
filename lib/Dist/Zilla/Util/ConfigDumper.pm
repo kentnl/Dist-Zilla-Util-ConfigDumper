@@ -55,25 +55,27 @@ use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_pl
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sub config_dumper {
+  my ( $package, @methodnames ) = @_;
+  my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
+  my $CFG_PACKAGE = __PACKAGE__;
+  return sub {
+    my ( $orig, $self, @rest ) = @_;
+    my $cnf     = $self->$orig(@rest);
+    my $payload = {};
+    my @fails;
+    for my $test (@tests) {
+      $test->( $self, $payload, \@fails );
+    }
+    $cnf->{$package} = $payload;
+    if (@fails) {
+      $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
+      $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
+      $cnf->{$CFG_PACKAGE}->{$package}->{failed} = \@fails;
+    }
+    return $cnf;
+  };
+}
 
 
 
@@ -223,28 +225,6 @@ Either way:
   }
 
 Except with some extra "things dun goofed" handling.
-
-sub config_dumper {
-  my ( $package, @methodnames ) = @_;
-  my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
-  my $CFG_PACKAGE = __PACKAGE__;
-  return sub {
-    my ( $orig, $self, @rest ) = @_;
-    my $cnf     = $self->$orig(@rest);
-    my $payload = {};
-    my @fails;
-    for my $test (@tests) {
-      $test->( $self, $payload, \@fails );
-    }
-    $cnf->{$package} = $payload;
-    if (@fails) {
-      $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
-      $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
-      $cnf->{$CFG_PACKAGE}->{$package}->{failed} = \@fails;
-    }
-    return $cnf;
-  };
-}
 
 =head2 C<dump_plugin>
 
