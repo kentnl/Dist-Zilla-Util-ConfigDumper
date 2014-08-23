@@ -13,6 +13,22 @@ SYNOPSIS
       around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
 
 FUNCTIONS
+  "dump_plugin"
+    This function serves the other half of the equation, emulating "dzil"'s
+    own internal behaviour for extracting the "plugin" configuration data.
+
+      for my $plugin ( @{ $zilla->plugins } ) {
+        pp( dump_plugin( $plugin )); # could prove useful somewhere.
+      }
+
+    Its not usually something you need, but its useful in:
+
+    *   Tests
+
+    *   Crazy Stuff like injecting plugins
+
+    *   Crazy Suff like having "Child" plugins
+
   "config_dumper"
       config_dumper( __PACKAGE__, qw( method list ) );
 

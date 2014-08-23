@@ -13,7 +13,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Carp qw( croak );
 use Try::Tiny qw( try catch );
-use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper )], };
+use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_plugin )], };
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
@@ -35,6 +35,42 @@ sub config_dumper {
     }
     return $cnf;
   };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sub dump_plugin {
+  my ($plugin) = @_;
+  my $object_config = {};
+  $object_config->{class}   = $plugin->meta->name  if $plugin->can('meta') and $plugin->meta->can('name');
+  $object_config->{name}    = $plugin->plugin_name if $plugin->can('plugin_name');
+  $object_config->{version} = $plugin->VERSION     if $plugin->can('VERSION');
+  if ( $plugin->can('dump_config') ) {
+    my $finder_config = $finder_object->dump_config;
+    $object_config->{config} = $finder_config if keys %{$finder_config};
+  }
+  return $object_config;
 }
 
 sub _mk_method_test {
@@ -111,6 +147,27 @@ version 0.002002
   around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
 
 =head1 FUNCTIONS
+
+=head2 C<dump_plugin>
+
+This function serves the other half of the equation, emulating C<dzil>'s own
+internal behaviour for extracting the C<plugin> configuration data.
+
+  for my $plugin ( @{ $zilla->plugins } ) {
+    pp( dump_plugin( $plugin )); # could prove useful somewhere.
+  }
+
+Its not usually something you need, but its useful in:
+
+=over 4
+
+=item * Tests
+
+=item * Crazy Stuff like injecting plugins
+
+=item * Crazy Suff like having "Child" plugins
+
+=back
 
 =head2 C<config_dumper>
 
