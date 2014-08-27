@@ -1,5 +1,12 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003001 2014-08-27T22:48:37Z
+ [Bugfix]
+ - use instance->meta->find_attribute_by_name().
+ - because: PACKAGE-> can't be used because roles don't work
+ - because: dumpconfig( __PACKAGE__ , attrs ... ) assumes that the instance will have the attr
+ - because: $instance->get_attribute() doesn't trace inheritance.
+
 0.003000 2014-08-23T14:08:57Z
  [00 Major]
  - Add dump_plugin utility for deep nested "I want to pretend I'm dzil" stuff.

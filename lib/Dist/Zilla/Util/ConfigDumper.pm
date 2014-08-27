@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003000';
+our $VERSION = '0.003001';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
@@ -147,7 +147,7 @@ sub _mk_attribute_test {
     my ( $instance, $payload, $fails ) = @_;
     try {
       my $metaclass           = $instance->meta;
-      my $attribute_metaclass = $metaclass->get_attribute($attrname);
+      my $attribute_metaclass = $metaclass->find_attribute_by_name($attrname);
       if ( $attribute_metaclass->has_value($instance) ) {
         $payload->{$attrname} = $attribute_metaclass->get_value($instance);
       }
@@ -189,7 +189,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.003000
+version 0.003001
 
 =head1 SYNOPSIS
 
