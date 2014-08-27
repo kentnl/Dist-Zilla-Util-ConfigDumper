@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+
+0.003001 2014-08-27T22:48:37Z
  [Bugfix]
  - use instance->meta->find_attribute_by_name().
  - because: PACKAGE-> can't be used because roles don't work
