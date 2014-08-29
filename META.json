@@ -102,7 +102,7 @@
             "Dist::Zilla::Plugin::GatherDir" : "0",
             "Dist::Zilla::Plugin::MetaConfig" : "0",
             "Dist::Zilla::Role::Plugin" : "0",
-            "Dist::Zilla::Util::Test::KENTNL" : "1.001",
+            "Dist::Zilla::Util::Test::KENTNL" : "1.003001",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
             "Moose" : "0",
@@ -114,7 +114,7 @@
    "provides" : {
       "Dist::Zilla::Util::ConfigDumper" : {
          "file" : "lib/Dist/Zilla/Util/ConfigDumper.pm",
-         "version" : "0.003001"
+         "version" : "0.003002"
       }
    },
    "release_status" : "stable",
@@ -129,7 +129,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper"
       }
    },
-   "version" : "0.003001",
+   "version" : "0.003002",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142060",
@@ -183,7 +183,7 @@
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.020",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.020000",
          "Dist::Zilla::Role::Plugin" : "5.020",
-         "Dist::Zilla::Util::Test::KENTNL" : "1.002000",
+         "Dist::Zilla::Util::Test::KENTNL" : "1.003001",
          "ExtUtils::MakeMaker" : "6.98",
          "File::Spec" : "3.49",
          "Moose" : "2.1211",
@@ -644,7 +644,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.003001-source",
+                  "tag" : "0.003002-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -715,7 +715,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.003001",
+                  "tag" : "0.003002",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -798,7 +798,7 @@
             "class" : "Dist::Zilla::Plugin::Prereqs",
             "config" : {
                "Dist::Zilla::Plugin::Prereqs" : {
-                  "phase" : "runtime",
+                  "phase" : "test",
                   "type" : "requires"
                }
             },

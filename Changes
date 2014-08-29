@@ -1,5 +1,13 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003002 2014-08-29T10:02:14Z
+ [Bugfix]
+ - Avoid no-build-dir fails.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003001, see misc/*.deps* for details
+ - test: ↑1
+
 0.003001 2014-08-27T22:48:37Z
  [Bugfix]
  - use instance->meta->find_attribute_by_name().
