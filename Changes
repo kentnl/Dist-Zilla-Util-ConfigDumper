@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+
+0.003002 2014-08-29T10:02:14Z
  [Bugfix]
  - Avoid no-build-dir fails.
 
