@@ -58,7 +58,9 @@ use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_pl
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
   if ( not defined $package or ref $package ) {
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
     croak('config_dumper(__PACKAGE__, @recipie ): Arg 1 must not be ref or undef');
+    ## use critic
   }
 
   my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
