@@ -1,7 +1,7 @@
 ---
 abstract: "Easy implementation of 'dumpconfig'"
 author:
-  - 'Kent Fredric <kentfredric@gmail.com>'
+  - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
   Dist::Zilla::Plugin::Bootstrap::lib: '0'
   Dist::Zilla::Plugin::GatherDir: '0'
@@ -612,5 +612,3 @@ x_Dist_Zilla:
       is_trial: '0'
     version: '5.020'
 x_authority: cpan:KENTNL
-x_contributors:
-  - 'Kent Fredric <kentnl@cpan.org>'
