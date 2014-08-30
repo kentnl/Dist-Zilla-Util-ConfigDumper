@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-0.003003
+0.003004
+
+0.003003 2014-08-30T14:20:07Z
 
 0.003002 2014-08-29T10:02:14Z
  [Changed / test requires]
