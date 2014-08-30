@@ -1,6 +1,9 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+ [Bugfix]
+ - Croak if __PACKAGE__ is a ref.
+
  [Metadata]
  - author = kentnl
 

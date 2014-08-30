@@ -57,6 +57,12 @@ Except with some extra "things dun goofed" handling.
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
+  if ( not defined $package or ref $package ) {
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
+    croak('config_dumper(__PACKAGE__, @recipie ): Arg 1 must not be ref or undef');
+    ## use critic
+  }
+
   my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
