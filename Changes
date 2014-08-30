@@ -1,5 +1,12 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003003 2014-08-30T14:20:07Z
+ [Bugfix]
+ - Croak if __PACKAGE__ is a ref.
+
+ [Metadata]
+ - author = kentnl
+
 0.003002 2014-08-29T10:02:14Z
  [Bugfix]
  - Avoid no-build-dir fails.

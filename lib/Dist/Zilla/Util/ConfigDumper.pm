@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003002';
+our $VERSION = '0.003003';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
@@ -57,6 +57,12 @@ use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_pl
 
 sub config_dumper {
   my ( $package, @methodnames ) = @_;
+  if ( not defined $package or ref $package ) {
+    ## no critic (ValuesAndExpressions::RequireInterpolationOfMetachars)
+    croak('config_dumper(__PACKAGE__, @recipie ): Arg 1 must not be ref or undef');
+    ## use critic
+  }
+
   my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
@@ -189,7 +195,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.003002
+version 0.003003
 
 =head1 SYNOPSIS
 
@@ -327,7 +333,7 @@ if the attribute named has a value, and only then will we fetch it.
 
 =head1 AUTHOR
 
-Kent Fredric <kentfredric@gmail.com>
+Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

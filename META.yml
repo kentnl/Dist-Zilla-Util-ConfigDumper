@@ -1,7 +1,7 @@
 ---
 abstract: "Easy implementation of 'dumpconfig'"
 author:
-  - 'Kent Fredric <kentfredric@gmail.com>'
+  - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
   Dist::Zilla::Plugin::Bootstrap::lib: '0'
   Dist::Zilla::Plugin::GatherDir: '0'
@@ -25,7 +25,7 @@ name: Dist-Zilla-Util-ConfigDumper
 provides:
   Dist::Zilla::Util::ConfigDumper:
     file: lib/Dist/Zilla/Util/ConfigDumper.pm
-    version: '0.003002'
+    version: '0.003003'
 requires:
   Carp: '0'
   Sub::Exporter::Progressive: '0'
@@ -38,13 +38,13 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper
   repository: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper.git
-version: '0.003002'
+version: '0.003003'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
     Carp: '1.34'
     Dist::Zilla::App::Command::bakeini: '0.001002'
-    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.002003'
+    Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes: '0.003001'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.020'
     Dist::Zilla::Plugin::Bootstrap::lib: '1.000005'
@@ -68,7 +68,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaConfig: '5.020'
     Dist::Zilla::Plugin::MetaData::BuiltWith: '1.002000'
     Dist::Zilla::Plugin::MetaJSON: '5.020'
-    Dist::Zilla::Plugin::MetaProvides::Package: '2.001000'
+    Dist::Zilla::Plugin::MetaProvides::Package: '2.001001'
     Dist::Zilla::Plugin::MetaTests: '5.020'
     Dist::Zilla::Plugin::MetaYAML: '5.020'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
@@ -150,7 +150,7 @@ x_Dist_Zilla:
           inherit_version: '1'
           meta_noindex: '1'
       name: '@Author::KENTNL/MetaProvides::Package'
-      version: '2.001000'
+      version: '2.001001'
     -
       class: Dist::Zilla::Plugin::MetaData::BuiltWith
       config:
@@ -384,7 +384,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes
       name: '@Author::KENTNL/Author::KENTNL::RecommendFixes'
-      version: '0.002003'
+      version: '0.003001'
     -
       class: Dist::Zilla::Plugin::ReadmeFromPod
       name: '@Author::KENTNL/ReadmeFromPod'
@@ -450,7 +450,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 0.003002-source
+          tag: 0.003003-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -504,7 +504,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '0.003002'
+          tag: '0.003003'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
