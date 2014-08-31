@@ -2,7 +2,7 @@ NAME
     Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 VERSION
-    version 0.003004
+    version 0.003005
 
 SYNOPSIS
       ...
