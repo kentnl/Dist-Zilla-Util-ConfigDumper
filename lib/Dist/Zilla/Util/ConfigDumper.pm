@@ -73,7 +73,9 @@ sub config_dumper {
     for my $test (@tests) {
       $test->( $self, $payload, \@fails );
     }
-    $cnf->{$package} = $payload;
+    if ( keys %{$payload} ) {
+      $cnf->{$package} = $payload;
+    }
     if (@fails) {
       $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
       $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
