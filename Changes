@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+ [Bugfix]
+ - Don't report empty config payloads.
 
 0.003003 2014-08-30T14:20:07Z
  [Bugfix]
