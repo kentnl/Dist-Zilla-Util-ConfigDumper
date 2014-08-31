@@ -1,5 +1,9 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003004 2014-08-31T21:17:10Z
+ [Bugfix]
+ - Don't report empty config payloads.
+
 0.003003 2014-08-30T14:20:07Z
  [Bugfix]
  - Croak if __PACKAGE__ is a ref.

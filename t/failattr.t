@@ -40,7 +40,6 @@ $t->meta_path_deeply(
   '/x_Dist_Zilla/plugins/*/*[ key eq \'class\' and value eq \'Dist::Zilla::Plugin::TestPlugin\' ]/../*[ key eq \'config\']',
   [
     {
-      'Dist::Zilla::Plugin::TestPlugin' => {},
       'Dist::Zilla::Util::ConfigDumper' => {
         'Dist::Zilla::Plugin::TestPlugin' => { 'failed' => ['attr'] }
       },

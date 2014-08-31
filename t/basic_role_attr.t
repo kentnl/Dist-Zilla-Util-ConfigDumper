@@ -57,7 +57,6 @@ $t->meta_path_deeply(
   [
     {
       'Dist::Zilla::Plugin::TestPlugin' => { 'childattr' => 'Rainbows and lollypops, etc' },
-      'Dist::Zilla::Role::TestRole'     => {},
     }
   ],
   "Plugin list expected"

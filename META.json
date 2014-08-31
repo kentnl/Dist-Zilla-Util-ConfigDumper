@@ -114,7 +114,7 @@
    "provides" : {
       "Dist::Zilla::Util::ConfigDumper" : {
          "file" : "lib/Dist/Zilla/Util/ConfigDumper.pm",
-         "version" : "0.003003"
+         "version" : "0.003004"
       }
    },
    "release_status" : "stable",
@@ -129,7 +129,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper"
       }
    },
-   "version" : "0.003003",
+   "version" : "0.003004",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142060",
@@ -138,7 +138,7 @@
          "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.003001",
          "Dist::Zilla::Plugin::Authority" : "1.006",
          "Dist::Zilla::Plugin::AutoPrereqs" : "5.020",
-         "Dist::Zilla::Plugin::Bootstrap::lib" : "1.000005",
+         "Dist::Zilla::Plugin::Bootstrap::lib" : "1.001000",
          "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0.002",
          "Dist::Zilla::Plugin::ConfirmRelease" : "5.020",
          "Dist::Zilla::Plugin::CopyFilesFromBuild" : "0.103510",
@@ -149,7 +149,7 @@
          "Dist::Zilla::Plugin::Git::CommitBuild" : "2.023",
          "Dist::Zilla::Plugin::Git::Contributors" : "0.007",
          "Dist::Zilla::Plugin::Git::GatherDir" : "2.023",
-         "Dist::Zilla::Plugin::Git::NextRelease" : "0.002012",
+         "Dist::Zilla::Plugin::Git::NextRelease" : "0.003000",
          "Dist::Zilla::Plugin::Git::Tag" : "2.023",
          "Dist::Zilla::Plugin::GithubMeta" : "0.46",
          "Dist::Zilla::Plugin::License" : "5.020",
@@ -225,6 +225,19 @@
          "version" : "5.021003"
       },
       "plugins" : [
+         {
+            "class" : "Dist::Zilla::Plugin::Bootstrap::lib",
+            "config" : {
+               "Dist::Zilla::Role::Bootstrap" : {
+                  "distname" : "Dist-Zilla-Util-ConfigDumper",
+                  "fallback" : "1",
+                  "try_built" : null,
+                  "try_built_method" : "mtime"
+               }
+            },
+            "name" : "Bootstrap::lib",
+            "version" : "1.001000"
+         },
          {
             "class" : "Dist::Zilla::Plugin::MetaConfig",
             "name" : "@Author::KENTNL/MetaConfig",
@@ -644,7 +657,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.003003-source",
+                  "tag" : "0.003004-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -659,7 +672,7 @@
          {
             "class" : "Dist::Zilla::Plugin::Git::NextRelease",
             "name" : "@Author::KENTNL/Git::NextRelease",
-            "version" : "0.002012"
+            "version" : "0.003000"
          },
          {
             "class" : "Dist::Zilla::Plugin::BumpVersionAfterRelease",
@@ -715,7 +728,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.003003",
+                  "tag" : "0.003004",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"

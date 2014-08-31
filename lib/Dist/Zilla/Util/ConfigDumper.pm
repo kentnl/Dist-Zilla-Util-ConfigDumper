@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003003';
+our $VERSION = '0.003004';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
@@ -73,7 +73,9 @@ sub config_dumper {
     for my $test (@tests) {
       $test->( $self, $payload, \@fails );
     }
-    $cnf->{$package} = $payload;
+    if ( keys %{$payload} ) {
+      $cnf->{$package} = $payload;
+    }
     if (@fails) {
       $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
       $cnf->{$CFG_PACKAGE}->{$package} = {} unless exists $cnf->{$CFG_PACKAGE};
@@ -195,7 +197,7 @@ Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
 
 =head1 VERSION
 
-version 0.003003
+version 0.003004
 
 =head1 SYNOPSIS
 
