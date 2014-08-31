@@ -129,6 +129,16 @@ x_Dist_Zilla:
     version: '5.021003'
   plugins:
     -
+      class: Dist::Zilla::Plugin::Bootstrap::lib
+      config:
+        Dist::Zilla::Role::Bootstrap:
+          distname: Dist-Zilla-Util-ConfigDumper
+          fallback: '1'
+          try_built: ~
+          try_built_method: mtime
+      name: Bootstrap::lib
+      version: '1.001000'
+    -
       class: Dist::Zilla::Plugin::MetaConfig
       name: '@Author::KENTNL/MetaConfig'
       version: '5.020'
@@ -460,8 +470,6 @@ x_Dist_Zilla:
       version: '2.023'
     -
       class: Dist::Zilla::Plugin::Git::NextRelease
-      config:
-        Dist::Zilla::Plugin::Git::NextRelease: {}
       name: '@Author::KENTNL/Git::NextRelease'
       version: '0.003000'
     -
