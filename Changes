@@ -1,12 +1,16 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
-0.003007 2014-10-02T04:28:34Z
+0.003007 2014-10-02T04:28:53Z
 
 0.003006 2014-10-02T04:27:34Z
  [Bugfix]
  - Require 1.(0x5)3, as versions prior to that can fail due to a missing dependency on an appropriate role.
  - This is a propagation of kentnl/Dist-Zilla-Plugin-Bootstrap-lib#2
  - This closes #1
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003005, see misc/*.deps* for details
+ - test: ↑1
 
 0.003005 2014-10-02T04:13:44Z
  [Bugfix]
