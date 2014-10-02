@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003005';
+our $VERSION = '0.003006';
 
 # ABSTRACT: Easy implementation of 'dumpconfig'
 
