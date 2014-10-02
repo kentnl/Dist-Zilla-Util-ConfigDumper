@@ -22,3 +22,4 @@ twitter_hash_tags = #perl #cpan
 [Prereqs]
 -phase = test
 Dist::Zilla::Util::Test::KENTNL = 1.003001
+Dist::Zilla::Plugin::Bootstrap::lib = 0.04000000 ; Older than this known to fail
