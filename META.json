@@ -98,7 +98,7 @@
             "Test::More" : "1.001006"
          },
          "requires" : {
-            "Dist::Zilla::Plugin::Bootstrap::lib" : "0.04000000",
+            "Dist::Zilla::Plugin::Bootstrap::lib" : "1.000003",
             "Dist::Zilla::Plugin::GatherDir" : "0",
             "Dist::Zilla::Plugin::MetaConfig" : "0",
             "Dist::Zilla::Role::Plugin" : "0",
@@ -114,7 +114,7 @@
    "provides" : {
       "Dist::Zilla::Util::ConfigDumper" : {
          "file" : "lib/Dist/Zilla/Util/ConfigDumper.pm",
-         "version" : "0.003005"
+         "version" : "0.003006"
       }
    },
    "release_status" : "stable",
@@ -129,7 +129,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper"
       }
    },
-   "version" : "0.003005",
+   "version" : "0.003006",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142690",
@@ -657,7 +657,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.003005-source",
+                  "tag" : "0.003006-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -728,7 +728,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.003005",
+                  "tag" : "0.003006",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"

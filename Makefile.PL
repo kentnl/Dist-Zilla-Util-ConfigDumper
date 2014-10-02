@@ -28,7 +28,7 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Dist::Zilla::Plugin::Bootstrap::lib" => "0.04000000",
+    "Dist::Zilla::Plugin::Bootstrap::lib" => "1.000003",
     "Dist::Zilla::Plugin::GatherDir" => 0,
     "Dist::Zilla::Plugin::MetaConfig" => 0,
     "Dist::Zilla::Role::Plugin" => 0,
@@ -39,7 +39,7 @@ my %WriteMakefileArgs = (
     "Test::DZil" => 0,
     "Test::More" => "0.89"
   },
-  "VERSION" => "0.003005",
+  "VERSION" => "0.003006",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Carp" => 0,
-  "Dist::Zilla::Plugin::Bootstrap::lib" => "0.04000000",
+  "Dist::Zilla::Plugin::Bootstrap::lib" => "1.000003",
   "Dist::Zilla::Plugin::GatherDir" => 0,
   "Dist::Zilla::Plugin::MetaConfig" => 0,
   "Dist::Zilla::Role::Plugin" => 0,
