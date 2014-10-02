@@ -1,5 +1,15 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003005 2014-10-02T04:13:44Z
+ [Bugfix]
+ - Require a newer version of Bootstrap::lib for testing as older than 0.04x is known to fail.
+ - This might be a solution for gh#1 ( by Brendan Byrd )
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003004, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - test: ↑1 (recommends: ↑1)
+
 0.003004 2014-08-31T21:17:10Z
  [Bugfix]
  - Don't report empty config payloads.
