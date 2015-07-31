@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+
+0.003007 2015-07-31T03:43:06Z cf8cff3
  [Dependencies::Stats]
  - Dependencies changed since 0.003006, see misc/*.deps* for details
  - configure: +1 (recommends: ↑1)
