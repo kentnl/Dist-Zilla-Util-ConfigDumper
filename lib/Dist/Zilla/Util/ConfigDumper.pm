@@ -1,13 +1,12 @@
-use 5.008;    # utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003006';
+our $VERSION = '0.003007';
 
-# ABSTRACT: Easy implementation of 'dumpconfig'
+# ABSTRACT: A Dist::Zilla plugin configuration extraction utility
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -193,11 +192,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
+Dist::Zilla::Util::ConfigDumper - A Dist::Zilla plugin configuration extraction utility
 
 =head1 VERSION
 
-version 0.003006
+version 0.003007
 
 =head1 SYNOPSIS
 
@@ -207,6 +206,28 @@ version 0.003006
   use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
 
   around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
+
+=head1 DESCRIPTION
+
+This module contains a utility function for use within the C<Dist::Zilla>
+plugin ecosystem, to simplify extraction of plugin settings for plugin
+authors, in order for plugins like C<Dist::Zilla::Plugin::MetaConfig> to expose
+those values to consumers.
+
+Primarily, it specializes in:
+
+=over 4
+
+=item * Making propagating configuration from the plugins inheritance hierarchy
+nearly foolproof.
+
+=item * Providing simple interfaces to extract values of lists of named methods
+or accessors
+
+=item * Providing a way to intelligently and easily probe the value of lazy
+attributes without triggering their vivification.
+
+=back
 
 =head1 FUNCTIONS
 
@@ -339,7 +360,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentfredric@gmail.com>.
+This software is copyright (c) 2015 by Kent Fredric <kentfredric@gmail.com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
