@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
+Dist::Zilla::Util::ConfigDumper - A Dist::Zilla plugin configuration extraction utility
 
 # VERSION
 

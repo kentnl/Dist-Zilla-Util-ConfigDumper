@@ -7,7 +7,7 @@ package Dist::Zilla::Util::ConfigDumper;
 
 our $VERSION = '0.003007';
 
-# ABSTRACT: Easy implementation of 'dumpconfig'
+# ABSTRACT: A Dist::Zilla plugin configuration extraction utility
 
 # AUTHORITY
 
