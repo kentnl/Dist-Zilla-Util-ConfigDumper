@@ -8,7 +8,7 @@ expose those values to consumers.
 Primarily, it specializes in:
 
 *   Making propagating configuration from the plugins inheritance
-    hierachy nearly foolproof.
+    hierarchy nearly foolproof.
 
 *   Providing simple interfaces to extract values of lists of named
     methods or accessors

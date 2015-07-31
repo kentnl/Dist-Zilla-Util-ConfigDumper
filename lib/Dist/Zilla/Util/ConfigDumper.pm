@@ -219,7 +219,7 @@ Primarily, it specializes in:
 
 =over 4
 
-=item * Making propagating configuration from the plugins inheritance hierachy
+=item * Making propagating configuration from the plugins inheritance hierarchy
 nearly foolproof.
 
 =item * Providing simple interfaces to extract values of lists of named methods
