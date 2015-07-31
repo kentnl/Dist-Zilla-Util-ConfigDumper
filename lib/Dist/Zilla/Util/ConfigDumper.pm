@@ -7,7 +7,7 @@ package Dist::Zilla::Util::ConfigDumper;
 
 our $VERSION = '0.003007';
 
-# ABSTRACT: Easy implementation of 'dumpconfig'
+# ABSTRACT: A Dist::Zilla plugin configuration extraction utility
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
@@ -193,7 +193,7 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Util::ConfigDumper - Easy implementation of 'dumpconfig'
+Dist::Zilla::Util::ConfigDumper - A Dist::Zilla plugin configuration extraction utility
 
 =head1 VERSION
 
