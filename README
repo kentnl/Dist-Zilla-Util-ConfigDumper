@@ -1,6 +1,20 @@
 Dist::Zilla::Util::ConfigDumper
 
+This module contains a utility function for use within the "Dist::Zilla"
+plugin ecosystem, to simplify extraction of plugin settings for plugin
+authors, in order for plugins like "Dist::Zilla::Plugin::MetaConfig" to
+expose those values to consumers.
 
+Primarily, it specialises in:
+
+*   Making propagating configuration from the plugins inheritance
+    heirachy nearly foolproof.
+
+*   Providing simple interfaces to extract values of lists of named
+    methods or accessors
+
+*   Providing a way to intelligently and easily probe the value of lazy
+    attributes without triggering their vivification.
 
 INSTALLATION
 

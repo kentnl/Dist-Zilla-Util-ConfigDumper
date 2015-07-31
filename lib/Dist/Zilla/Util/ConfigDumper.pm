@@ -208,6 +208,28 @@ version 0.003007
 
   around dump_config => config_dumper( __PACKAGE__, qw( foo bar baz ) );
 
+=head1 DESCRIPTION
+
+This module contains a utility function for use within the C<Dist::Zilla>
+plugin ecosystem, to simplify extraction of plugin settings for plugin
+authors, in order for plugins like C<Dist::Zilla::Plugin::MetaConfig> to expose
+those values to consumers.
+
+Primarily, it specialises in:
+
+=over 4
+
+=item * Making propagating configuration from the plugins inheritance heirachy
+nearly foolproof.
+
+=item * Providing simple interfaces to extract values of lists of named methods
+or accessors
+
+=item * Providing a way to intelligently and easily probe the value of lazy
+attributes without triggering their vivification.
+
+=back
+
 =head1 FUNCTIONS
 
 =head2 C<config_dumper>
