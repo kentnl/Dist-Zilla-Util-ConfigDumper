@@ -1,6 +1,16 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 0.003007
+ [Added / develop recommends]
+ - Test::More 1.001014
+
+ [Added / develop requires]
+ - Test::EOL
+ - Test::More 0.88
+
+ [Changed / develop suggests]
+ - Dist::Zilla::App::Command::bakeini 0.001002 → 0.002005
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.020003 → 2.025001
 
 0.003006 2014-10-02T04:27:34Z
 
