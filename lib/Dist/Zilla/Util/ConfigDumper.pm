@@ -215,11 +215,11 @@ plugin ecosystem, to simplify extraction of plugin settings for plugin
 authors, in order for plugins like C<Dist::Zilla::Plugin::MetaConfig> to expose
 those values to consumers.
 
-Primarily, it specialises in:
+Primarily, it specializes in:
 
 =over 4
 
-=item * Making propagating configuration from the plugins inheritance heirachy
+=item * Making propagating configuration from the plugins inheritance hierachy
 nearly foolproof.
 
 =item * Providing simple interfaces to extract values of lists of named methods
