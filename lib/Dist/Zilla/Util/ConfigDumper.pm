@@ -12,6 +12,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Carp qw( croak );
 use Try::Tiny qw( try catch );
+use Scalar::Util qw( blessed );
 use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_plugin )], };
 
 
@@ -63,6 +64,7 @@ sub config_dumper {
   }
 
   my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
+  push @tests, _mk_version_test( $package );
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
     my ( $orig, $self, @rest ) = @_;
@@ -134,6 +136,20 @@ sub dump_plugin {
   return $object_config;
 }
 
+
+sub _mk_version_test {
+  my ( $package ) = @_;
+  return sub {
+    my ( $instance, $payload, $fails ) = @_;
+    return if blessed($instance) eq $package;
+    try { 
+      my $v = do { no strict; ${$package . '::VERSION' } };
+      $payload->{ $package . '::VERSION' } = defined $v ? $v : 'DEV';
+    } catch {
+      push @{$fails}, $package . '::VERSION';
+    };
+  };
+}
 sub _mk_method_test {
   my ( undef, $methodname ) = @_;
   return sub {
