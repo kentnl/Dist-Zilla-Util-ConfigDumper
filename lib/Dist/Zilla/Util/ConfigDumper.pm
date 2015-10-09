@@ -62,9 +62,11 @@ sub config_dumper {
     croak('config_dumper(__PACKAGE__, @recipie ): Arg 1 must not be ref or undef');
     ## use critic
   }
-
-  my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
-  push @tests, _mk_version_test( $package );
+  my $config = {
+    export_version => 'auto'
+  };
+  my (@tests) = map { _mk_test( $package, $_, $config ) } @methodnames;
+  #push @tests, _mk_version_test( $package, $config ) if $config->{export_version};
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
     my ( $orig, $self, @rest ) = @_;
@@ -76,6 +78,9 @@ sub config_dumper {
     }
     if ( keys %{$payload} ) {
       $cnf->{$package} = $payload;
+    }
+    if ( blessed $self ne $package ) {
+      $cnf->{ $package . "::VERSION" } = $package->VERSION;
     }
     if (@fails) {
       $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
@@ -138,7 +143,7 @@ sub dump_plugin {
 
 
 sub _mk_version_test {
-  my ( $package ) = @_;
+  my ( $package, ) = @_;
   return sub {
     my ( $instance, $payload, $fails ) = @_;
     return if blessed($instance) eq $package;
@@ -182,19 +187,19 @@ sub _mk_attribute_test {
 }
 
 sub _mk_hash_test {
-  my ( $package, $hash ) = @_;
+  my ( $package, $hash, $config ) = @_;
   my @out;
   if ( exists $hash->{attrs} and 'ARRAY' eq ref $hash->{attrs} ) {
-    push @out, map { _mk_attribute_test( $package, $_ ) } @{ $hash->{attrs} };
+    push @out, map { _mk_attribute_test( $package, $_, $config ) } @{ $hash->{attrs} };
   }
   return @out;
 }
 
 sub _mk_test {
-  my ( $package, $methodname ) = @_;
-  return _mk_method_test( $package, $methodname ) if not ref $methodname;
+  my ( $package, $methodname , $config ) = @_;
+  return _mk_method_test( $package, $methodname, $config ) if not ref $methodname;
   return $methodname if 'CODE' eq ref $methodname;
-  return _mk_hash_test( $package, $methodname ) if 'HASH' eq ref $methodname;
+  return _mk_hash_test( $package, $methodname, $config ) if 'HASH' eq ref $methodname;
   croak "Don't know what to do with $methodname";
 }
 

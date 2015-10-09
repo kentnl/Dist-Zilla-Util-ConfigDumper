@@ -188,11 +188,11 @@
                   ]
                },
                "Dist::Zilla::Role::MetaProvider::Provider" : {
-                  "Dist::Zilla::Role::MetaProvider::Provider::VERSION" : "2.001002",
                   "inherit_missing" : "1",
                   "inherit_version" : "1",
                   "meta_noindex" : "1"
-               }
+               },
+               "Dist::Zilla::Role::MetaProvider::Provider::VERSION" : "2.001002"
             },
             "name" : "@Author::KENTNL/MetaProvides::Package",
             "version" : "2.003001"
