@@ -12,13 +12,13 @@ build_requires:
   File::Spec: '0'
   Moose: '0'
   Test::DZil: '0'
-  Test::More: '0.89'
+  Test::More: '0'
   perl: '5.006'
 configure_requires:
   ExtUtils::MakeMaker: '0'
   perl: '5.006'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.039, CPAN::Meta::Converter version 2.150005'
+generated_by: 'Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -30,7 +30,6 @@ provides:
     version: '0.003008'
 requires:
   Carp: '0'
-  Scalar::Util: '0'
   Sub::Exporter::Progressive: '0'
   Try::Tiny: '0'
   perl: '5.006'

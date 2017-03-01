@@ -12,7 +12,6 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Carp qw( croak );
 use Try::Tiny qw( try catch );
-use Scalar::Util qw( blessed );
 use Sub::Exporter::Progressive -setup => { exports => [qw( config_dumper dump_plugin )], };
 
 
@@ -62,11 +61,8 @@ sub config_dumper {
     croak('config_dumper(__PACKAGE__, @recipie ): Arg 1 must not be ref or undef');
     ## use critic
   }
-  my $config = {
-    export_version => 'auto'
-  };
-  my (@tests) = map { _mk_test( $package, $_, $config ) } @methodnames;
-  #push @tests, _mk_version_test( $package, $config ) if $config->{export_version};
+
+  my (@tests) = map { _mk_test( $package, $_ ) } @methodnames;
   my $CFG_PACKAGE = __PACKAGE__;
   return sub {
     my ( $orig, $self, @rest ) = @_;
@@ -78,9 +74,6 @@ sub config_dumper {
     }
     if ( keys %{$payload} ) {
       $cnf->{$package} = $payload;
-    }
-    if ( blessed $self ne $package ) {
-      $cnf->{ $package . "::VERSION" } = $package->VERSION;
     }
     if (@fails) {
       $cnf->{$CFG_PACKAGE} = {} unless exists $cnf->{$CFG_PACKAGE};
@@ -141,20 +134,6 @@ sub dump_plugin {
   return $object_config;
 }
 
-
-sub _mk_version_test {
-  my ( $package, ) = @_;
-  return sub {
-    my ( $instance, $payload, $fails ) = @_;
-    return if blessed($instance) eq $package;
-    try { 
-      my $v = do { no strict; ${$package . '::VERSION' } };
-      $payload->{ $package . '::VERSION' } = defined $v ? $v : 'DEV';
-    } catch {
-      push @{$fails}, $package . '::VERSION';
-    };
-  };
-}
 sub _mk_method_test {
   my ( undef, $methodname ) = @_;
   return sub {
@@ -187,19 +166,19 @@ sub _mk_attribute_test {
 }
 
 sub _mk_hash_test {
-  my ( $package, $hash, $config ) = @_;
+  my ( $package, $hash ) = @_;
   my @out;
   if ( exists $hash->{attrs} and 'ARRAY' eq ref $hash->{attrs} ) {
-    push @out, map { _mk_attribute_test( $package, $_, $config ) } @{ $hash->{attrs} };
+    push @out, map { _mk_attribute_test( $package, $_ ) } @{ $hash->{attrs} };
   }
   return @out;
 }
 
 sub _mk_test {
-  my ( $package, $methodname , $config ) = @_;
-  return _mk_method_test( $package, $methodname, $config ) if not ref $methodname;
+  my ( $package, $methodname ) = @_;
+  return _mk_method_test( $package, $methodname ) if not ref $methodname;
   return $methodname if 'CODE' eq ref $methodname;
-  return _mk_hash_test( $package, $methodname, $config ) if 'HASH' eq ref $methodname;
+  return _mk_hash_test( $package, $methodname ) if 'HASH' eq ref $methodname;
   croak "Don't know what to do with $methodname";
 }
 
@@ -381,7 +360,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Kent Fredric <kentfredric@gmail.com>.
+This software is copyright (c) 2017 by Kent Fredric <kentfredric@gmail.com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
