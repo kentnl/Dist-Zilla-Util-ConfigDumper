@@ -131,7 +131,7 @@
    "provides" : {
       "Dist::Zilla::Util::ConfigDumper" : {
          "file" : "lib/Dist/Zilla/Util/ConfigDumper.pm",
-         "version" : "0.003008"
+         "version" : "0.003009"
       }
    },
    "release_status" : "stable",
@@ -146,7 +146,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper"
       }
    },
-   "version" : "0.003008",
+   "version" : "0.003009",
    "x_BuiltWith" : {
       "external_file" : "misc/built_with.json"
    },
@@ -695,7 +695,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "0.003008-source",
+                  "tag" : "0.003009-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v"
                },
@@ -789,7 +789,7 @@
                   "branch" : "releases",
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "0.003008",
+                  "tag" : "0.003009",
                   "tag_format" : "%v",
                   "tag_message" : "v%v"
                },

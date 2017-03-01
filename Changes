@@ -1,5 +1,7 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
+0.003009 2017-03-01T22:42:18Z 33a0d16
+
 0.003008 2017-03-01T22:26:39Z fb86583
  [Bugfix]
  - Update tooling to avoid problems with '.' going away in @INC

@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::ConfigDumper;
 
-our $VERSION = '0.003008';
+our $VERSION = '0.003009';
 
 # ABSTRACT: A Dist::Zilla plugin configuration extraction utility
 
@@ -196,7 +196,7 @@ Dist::Zilla::Util::ConfigDumper - A Dist::Zilla plugin configuration extraction 
 
 =head1 VERSION
 
-version 0.003008
+version 0.003009
 
 =head1 SYNOPSIS
 
