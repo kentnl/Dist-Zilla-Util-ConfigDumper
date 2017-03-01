@@ -1,6 +1,14 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+ [Bugfix]
+ - Update tooling to avoid problems with '.' going away in @INC
+ - Closes https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues/4
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003007, see misc/*.deps* for details
+ - develop: +3 ↑2 (suggests: ↑1)
+ - test: ↓1
 
 0.003007 2015-07-31T03:43:06Z cf8cff3
  [Dependencies::Stats]
