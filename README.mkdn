@@ -4,7 +4,7 @@ Dist::Zilla::Util::ConfigDumper - A Dist::Zilla plugin configuration extraction 
 
 # VERSION
 
-version 0.003008
+version 0.003009
 
 # SYNOPSIS
 
