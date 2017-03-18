@@ -77,8 +77,8 @@ do { my $x = {
                                       'Test::Pod::Coverage' => '1.08'
                                     },
                       'suggests' => {
-                                      'Dist::Zilla::App::Command::bakeini' => '0.002005',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.025020'
+                                      'Dist::Zilla::App::Command::bakeini' => '0.002006',
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.025021'
                                     }
                     },
        'runtime' => {
@@ -103,7 +103,6 @@ do { my $x = {
                                    'Dist::Zilla::Plugin::GatherDir' => '0',
                                    'Dist::Zilla::Plugin::MetaConfig' => '0',
                                    'Dist::Zilla::Role::Plugin' => '0',
-                                   'Dist::Zilla::Util::Test::KENTNL' => '1.003001',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
                                    'Moose' => '0',

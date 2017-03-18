@@ -7,7 +7,6 @@ build_requires:
   Dist::Zilla::Plugin::GatherDir: '0'
   Dist::Zilla::Plugin::MetaConfig: '0'
   Dist::Zilla::Role::Plugin: '0'
-  Dist::Zilla::Util::Test::KENTNL: '1.003001'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
   Moose: '0'
@@ -18,7 +17,7 @@ configure_requires:
   ExtUtils::MakeMaker: '0'
   perl: '5.006'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150010'
+generated_by: 'Dist::Zilla version 6.009, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -27,7 +26,7 @@ name: Dist-Zilla-Util-ConfigDumper
 provides:
   Dist::Zilla::Util::ConfigDumper:
     file: lib/Dist/Zilla/Util/ConfigDumper.pm
-    version: '0.003008'
+    version: '0.003009'
 requires:
   Carp: '0'
   Sub::Exporter::Progressive: '0'
@@ -39,4 +38,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper
   repository: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper.git
-version: '0.003008'
+version: '0.003009'
