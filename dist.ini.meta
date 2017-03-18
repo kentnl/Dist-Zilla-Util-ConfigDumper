@@ -21,5 +21,4 @@ twitter_extra_hash_tags = #distzilla
 
 [Prereqs]
 -phase = test
-Dist::Zilla::Util::Test::KENTNL = 1.003001
 Dist::Zilla::Plugin::Bootstrap::lib = 1.000003 ; >= 0.04 works with the newer role, but only 1.(0x5)3 depends on the newer role.
