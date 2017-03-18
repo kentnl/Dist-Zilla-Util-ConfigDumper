@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-0.003009
+0.003010
+
+0.003009 2017-03-18T07:48:14Z
  [Changed / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.002005 → 0.002006
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.025020 → 2.025021
