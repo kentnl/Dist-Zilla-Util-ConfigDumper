@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ConfigDumper
 
 {{$NEXT}}
+
+0.003009 2017-03-18T07:48:14Z 1a10562
  - Remove use of Test::KENTNL/dztest
 
  [Dependencies::Stats]
