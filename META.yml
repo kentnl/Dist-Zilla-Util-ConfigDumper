@@ -26,7 +26,7 @@ name: Dist-Zilla-Util-ConfigDumper
 provides:
   Dist::Zilla::Util::ConfigDumper:
     file: lib/Dist/Zilla/Util/ConfigDumper.pm
-    version: '0.003009'
+    version: '0.003010'
 requires:
   Carp: '0'
   Sub::Exporter::Progressive: '0'
@@ -38,4 +38,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper
   repository: https://github.com/kentnl/Dist-Zilla-Util-ConfigDumper.git
-version: '0.003009'
+version: '0.003010'
