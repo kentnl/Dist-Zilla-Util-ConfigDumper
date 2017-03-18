@@ -2,8 +2,7 @@ use strict;
 use warnings;
 
 use Test::More;
-use Test::DZil qw( simple_ini );
-use Dist::Zilla::Util::Test::KENTNL 1.001 qw( dztest );
+use Test::DZil qw( simple_ini Builder );
 
 # ABSTRACT: Make sure plugins do what they say they'll do
 
@@ -14,12 +13,12 @@ require Dist::Zilla::Plugin::GatherDir;
 require Dist::Zilla::Plugin::MetaConfig;
 
 subtest 'unspecificied lazy' => sub {
-  my $t   = dztest();
-  my $pn  = 'TestPlugin';
-  my $fpn = 'Dist::Zilla::Plugin::' . $pn;
 
-  $t->add_file( 'dist.ini', simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [$pn], ) );
-  $t->add_file( 'lib/Dist/Zilla/Plugin/' . $pn . '.pm', <<"EOF");
+  my $pn    = 'TestPlugin';
+  my $fpn   = 'Dist::Zilla::Plugin::' . $pn;
+  my $files = {};
+  $files->{'source/dist.ini'} = simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [$pn], );
+  $files->{ 'source/lib/Dist/Zilla/Plugin/' . $pn . '.pm' } = <<"EOF";
 package $fpn;
 
 use Moose qw( has around with );
@@ -37,9 +36,13 @@ no Moose;
 1;
 EOF
 
-  $t->build_ok;
-  $t->meta_path_deeply(
-    '/x_Dist_Zilla/plugins/*/*[ key eq \'class\' and value eq \'Dist::Zilla::Plugin::TestPlugin\' ]/../*[ key eq \'config\']',
+  my $t = Builder->from_config( { dist_root => 'invalid' }, { add_files => $files } );
+  $t->chrome->logger->set_debug(1);
+  $t->build;
+  pass("build ok");
+
+  is_deeply(
+    [ map { $_->{config} } grep { $_->{class} eq $fpn } @{ $t->distmeta->{x_Dist_Zilla}->{plugins} } ],
     [ { 'Dist::Zilla::Plugin::TestPlugin' => { nlattr => 'nonlazy' } } ],
     "Plugin list expected"
   );
@@ -47,12 +50,12 @@ EOF
 };
 
 subtest 'specificied lazy' => sub {
-  my $t   = dztest();
-  my $pn  = 'TestPlugin';
-  my $fpn = 'Dist::Zilla::Plugin::' . $pn;
 
-  $t->add_file( 'dist.ini', simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [ $pn, { attr => 'user' } ], ) );
-  $t->add_file( 'lib/Dist/Zilla/Plugin/' . $pn . '.pm', <<"EOF");
+  my $pn    = 'TestPlugin';
+  my $fpn   = 'Dist::Zilla::Plugin::' . $pn;
+  my $files = {};
+  $files->{'source/dist.ini'} = simple_ini( ['Bootstrap::lib'], ['GatherDir'], ['MetaConfig'], [ $pn, { attr => 'user' } ], );
+  $files->{ 'source/lib/Dist/Zilla/Plugin/' . $pn . '.pm' } = <<"EOF";
 package $fpn;
 
 use Moose qw( has around with );
@@ -69,14 +72,16 @@ no Moose;
 
 1;
 EOF
+  my $t = Builder->from_config( { dist_root => 'invalid' }, { add_files => $files } );
+  $t->chrome->logger->set_debug(1);
+  $t->build;
+  pass("build ok");
 
-  $t->build_ok;
-  $t->meta_path_deeply(
-    '/x_Dist_Zilla/plugins/*/*[ key eq \'class\' and value eq \'Dist::Zilla::Plugin::TestPlugin\' ]/../*[ key eq \'config\']',
+  is_deeply(
+    [ map { $_->{config} } grep { $_->{class} eq $fpn } @{ $t->distmeta->{x_Dist_Zilla}->{plugins} } ],
     [ { 'Dist::Zilla::Plugin::TestPlugin' => { attr => 'user', nlattr => 'nonlazy' } } ],
     "Plugin list expected"
   );
 
 };
 done_testing;
-
